@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AlgeriaDiasporaMalmö.API/AlgeriaDiasporaMalmö.API.csproj" />
+  <Project Path="AlgeriaDiasporaMalmö.Application/AlgeriaDiasporaMalmö.Application.csproj" />
+  <Project Path="AlgeriaDiasporaMalmö.Domain/AlgeriaDiasporaMalmö.Domain.csproj" />
+  <Project Path="AlgeriaDiasporaMalmö.Infrastructure/AlgeriaDiasporaMalmö.Infrastructure.csproj" />
+</Solution>

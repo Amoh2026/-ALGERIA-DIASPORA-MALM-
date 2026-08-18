@@ -1,0 +1,9 @@
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\AlgeriaDiasporaMalmö.API.csproj.AssemblyReference.cache
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\AlgeriaDiasporaMalmö.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\AlgeriaDiasporaMalmö.API.AssemblyInfoInputs.cache
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\AlgeriaDiasporaMalmö.API.AssemblyInfo.cs
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\AlgeriaDiasporaMalmö.API.csproj.CoreCompileInputs.cache
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\AlgeriaDiasporaMalmö.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\AlgeriaDiasporaMalmö.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mohan\Desktop\Project AlgeriaDiasporaMalmö\AlgeriaDiasporaMalmö.API\obj\Debug\net9.0\AlgeriaDiasporaMalmö.API.sourcelink.json
