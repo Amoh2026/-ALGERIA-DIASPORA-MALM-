@@ -81,7 +81,7 @@ model EventRegistration {
   status    String   @default("PENDING")
   createdAt DateTime @default(now())
   
-  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
   
   @@unique([userId, eventId])
@@ -98,6 +98,46 @@ model Announcement {
   updatedAt   DateTime @updatedAt
   
   author User  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  event  Event @relation(fields: [eventId], references: [id], onDelete: SetNull)
   
   @@map("announcements")
+}
+
+model MemberApplication {
+  id                  String   @id @default(cuid())
+  firstName           String
+  lastName            String
+  personalNumber      String
+  gender              String?
+  phone               String
+  email               String
+  address             String
+  postalCode          String?
+  city                String?
+  children            String?
+  ageGroup            String
+  paymentMethod       String   @default("Swish")
+  paymentReference    String?
+  gdprConsent         Boolean  @default(true)
+  status              String   @default("PENDING")
+  ipAddress           String?
+  userAgent           String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  processedAt         DateTime?
+  processedBy         String?
+  
+  @@map("member_applications")
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  action      String
+  userId      String?
+  details     String?
+  ipAddress   String?
+  userAgent   String?
+  timestamp   DateTime @default(now())
+  
+  @@map("audit_logs")
 }
