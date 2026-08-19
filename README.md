@@ -36,119 +36,35 @@ A digital platform connecting the Algerian diaspora community in Malmö, Sweden,
 - ✅ **GDPR Compliant** - Data protection and consent
 - ✅ **Responsive Design** - Works on all devices
 
-## 📁 Project Structure
-
-\\\
-apps/web/
-├── app/
-│   ├── admin/            # Admin dashboard
-│   ├── member/           # Member dashboard
-│   ├── register/         # Member registration form
-│   ├── events/           # Event listings
-│   ├── news/             # Community news
-│   └── api/              # API routes
-├── components/           # Reusable React components
-├── lib/                  # Utilities (encryption, rate limit, audit)
-├── prisma/              # Database schema
-└── public/              # Static assets
-\\\
-
 ## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+
-- npm 9+
-
-### Installation
 
 \\\ash
 # Clone the repository
 git clone https://github.com/Amoh2026/-ALGERIA-DIASPORA-MALM-.git
 
-# Navigate to project
-cd -ALGERIA-DIASPORA-MALM-/apps/web
-
 # Install dependencies
-npm install
+cd -ALGERIA-DIASPORA-MALM-/apps/web && npm install
 
-# Set up environment variables
+# Set up environment
 cp .env.example .env.local
 
-# Push database schema
+# Push database
 npx prisma db push
 
-# Start development server
+# Start development
 npm run dev
 \\\
 
-### Environment Variables
+## 🔒 Security
 
-\\\env
-DATABASE_URL="file:./dev.db"
-NEXTAUTH_SECRET="your-secret-key"
-NEXTAUTH_URL="http://localhost:3000"
-ENCRYPTION_KEY="your-32-byte-encryption-key"
-\\\
-
-## 🔒 Security Features
-
-- **Data Encryption**: All sensitive data encrypted using AES-256-CBC
-- **Rate Limiting**: 5 submissions per IP per 15 minutes
-- **Audit Logging**: All administrative actions are logged
-- **Input Validation**: All user input validated with Zod
-- **SQL Injection Protection**: Prisma ORM with parameterized queries
-- **XSS Protection**: React automatic escaping
-- **CSRF Protection**: Next.js built-in protection
-- **GDPR Compliant**: User consent and data protection
-
-## 👥 Roles & Permissions
-
-| Role | Permissions |
-|------|-------------|
-| **Public** | View events, news, culture content |
-| **Member** | Register for events, create posts, comment |
-| **Admin** | Full access - manage members, events, content |
-
-## 📊 Database Schema
-
-- **User** - Member accounts with roles
-- **Account** - OAuth authentication
-- **Session** - User sessions
-- **Event** - Community events
-- **EventRegistration** - Event registrations
-- **Announcement** - News and updates
-- **MemberApplication** - Registration form submissions
-- **AuditLog** - Security audit trail
-
-## 🗓️ Roadmap
-
-- [x] Member registration form
-- [x] Authentication system
-- [x] Event management
-- [x] Admin dashboard
-- [x] Audit logging
-- [x] Data encryption
-- [ ] Email notifications
-- [ ] Photo galleries
-- [ ] Mobile app
-- [ ] Payment integration
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit changes
-4. Push to branch
-5. Open a Pull Request
-
-## 📝 License
-
-This project is private and proprietary to Svensk Algeriska Föreningen.
+- AES-256-CBC encryption for sensitive data
+- Rate limiting (5 submissions per 15 minutes)
+- Audit logging for all admin actions
+- Zod input validation
+- GDPR compliant
 
 ## 📞 Contact
 
-**Svensk Algeriska Föreningen**
-Malmö, Sweden
 Email: info@algeriskaföreningen.se
 
 ---
