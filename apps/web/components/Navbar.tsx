@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 const navItems = [
   { href: '/', label: 'Hem' },
   { href: '/about', label: 'Om Oss' },
-  { href: '/evenemang', label: 'Evenemang' }, // <--- CHANGED FROM /events TO /evenemang
+  { href: '/evenemang', label: 'Evenemang' },
   { href: '/culture', label: 'Kultur' },
   { href: '/contact', label: 'Kontakt' },
 ];
@@ -88,7 +88,7 @@ export function Navbar() {
                   Logga in
                 </Link>
                 <Link
-                  href="/register"
+                  href="/medlemsregistrering"
                   className="bg-yellow-500 text-blue-900 font-bold px-5 py-2 rounded-lg hover:bg-yellow-400 transition"
                 >
                   Bli Medlem
@@ -159,7 +159,7 @@ export function Navbar() {
                     Logga in
                   </Link>
                   <Link
-                    href="/register"
+                    href="/medlemsregistrering"
                     className="bg-yellow-500 text-blue-900 font-bold px-5 py-2 rounded-lg hover:bg-yellow-400 transition text-center"
                     onClick={() => setIsOpen(false)}
                   >
