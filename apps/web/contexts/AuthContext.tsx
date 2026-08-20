@@ -29,7 +29,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(data.user);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setUser(null);
+        setLoading(false);
+      });
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -54,8 +57,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async () => {
-    await fetch('/api/logout', { method: 'POST' });
-    setUser(null);
+    try {
+      // Call logout API
+      await fetch('/api/logout', { method: 'POST' });
+      
+      // Also clear cookie manually via JavaScript
+      document.cookie = 'auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      
+      // Clear user state
+      setUser(null);
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Force clear even if API fails
+      document.cookie = 'auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      setUser(null);
+    }
   };
 
   return (

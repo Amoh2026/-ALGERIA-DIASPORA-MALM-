@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
 import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this';
 
 export async function GET() {
   try {
@@ -11,7 +13,7 @@ export async function GET() {
       return NextResponse.json({ user: null });
     }
 
-    const user = verifyToken(token);
+    const user = jwt.verify(token, JWT_SECRET) as any;
     if (!user) {
       return NextResponse.json({ user: null });
     }

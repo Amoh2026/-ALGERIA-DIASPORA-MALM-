@@ -18,6 +18,12 @@ export default async function MemberDashboard() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-8">
+        <p className="text-green-700">
+          ✅ Du är inloggad som <strong>{user.name}</strong> ({user.role})
+        </p>
+      </div>
+
       <h1 className="text-3xl font-bold mb-8">Välkommen, {user.name}!</h1>
       
       <div className="grid md:grid-cols-3 gap-6">

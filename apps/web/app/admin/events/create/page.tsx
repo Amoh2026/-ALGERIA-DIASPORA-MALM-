@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useSession } from 'next-auth/react';
 
 export default function CreateEventPage() {
   const router = useRouter();
@@ -18,6 +18,10 @@ export default function CreateEventPage() {
     location: '',
     maxAttendees: '',
   });
+
+  if (!session || session.user?.role !== 'ADMIN') {
+    return <div className="text-center py-12">Du har inte behörighet att skapa evenemang</div>;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +39,8 @@ export default function CreateEventPage() {
 
       if (response.ok) {
         router.push('/admin/events');
+      } else {
+        alert('Något gick fel. Försök igen.');
       }
     } catch (error) {
       console.error('Error creating event:', error);
@@ -43,40 +49,36 @@ export default function CreateEventPage() {
     }
   };
 
-  if (!session || session.user?.role !== 'ADMIN') {
-    return <div>Unauthorized</div>;
-  }
-
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <h1 className="text-3xl font-bold mb-8">Create New Event</h1>
+      <h1 className="text-3xl font-bold mb-8">Skapa Nytt Evenemang</h1>
 
       <Card>
         <CardContent className="pt-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Event Title</label>
+              <label className="block text-sm font-medium mb-1">Titel</label>
               <Input
                 required
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                placeholder="Summer Festival 2026"
+                placeholder="Evenemangets titel"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Description</label>
+              <label className="block text-sm font-medium mb-1">Beskrivning</label>
               <textarea
                 required
                 className="w-full px-3 py-2 border rounded-md min-h-[100px]"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                placeholder="Describe your event..."
+                placeholder="Beskriv evenemanget..."
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Date & Time</label>
+              <label className="block text-sm font-medium mb-1">Datum och tid</label>
               <Input
                 required
                 type="datetime-local"
@@ -86,17 +88,17 @@ export default function CreateEventPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Location</label>
+              <label className="block text-sm font-medium mb-1">Plats</label>
               <Input
                 required
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                placeholder="Malmö, Sweden"
+                placeholder="Malmö, Sverige"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Max Attendees (Optional)</label>
+              <label className="block text-sm font-medium mb-1">Max antal deltagare (valfritt)</label>
               <Input
                 type="number"
                 value={formData.maxAttendees}
@@ -107,10 +109,10 @@ export default function CreateEventPage() {
 
             <div className="flex gap-4">
               <Button type="submit" disabled={loading}>
-                {loading ? 'Creating...' : 'Create Event'}
+                {loading ? 'Skapar...' : 'Skapa Evenemang'}
               </Button>
               <Button type="button" variant="outline" onClick={() => router.back()}>
-                Cancel
+                Avbryt
               </Button>
             </div>
           </form>

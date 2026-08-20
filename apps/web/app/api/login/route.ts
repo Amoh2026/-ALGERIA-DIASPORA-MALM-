@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { comparePassword, generateToken, getUserByEmail } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this';
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,7 +17,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const user = await getUserByEmail(email);
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
     if (!user) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
@@ -21,7 +28,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const isValid = await comparePassword(password, user.password);
+    const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
@@ -29,20 +36,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const token = generateToken({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      role: user.role,
-    });
+    const token = jwt.sign(
+      { id: user.id, email: user.email, name: user.name, role: user.role },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    );
 
-    // Set cookie
     const cookieStore = await cookies();
     cookieStore.set('auth_token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      maxAge: 60 * 60 * 24 * 7,
       path: '/',
     });
 
