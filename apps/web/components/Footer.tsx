@@ -11,8 +11,7 @@ export function Footer() {
               🇩🇿 Svensk Algeriska Föreningen
             </h3>
             <p className="text-sm">
-              Förenar Sverige och Algeriet sedan 1975. 
-              Vi bygger broar mellan kulturer genom gemenskap och evenemang.
+               Förenar Sverige och Algeriet. Vi bygger broar mellan kulturer genom gemenskap och evenemang.
             </p>
           </div>
 

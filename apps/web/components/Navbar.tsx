@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 const navItems = [
   { href: '/', label: 'Hem' },
   { href: '/about', label: 'Om Oss' },
-  { href: '/events', label: 'Evenemang' },
+  { href: '/evenemang', label: 'Evenemang' }, // <--- CHANGED FROM /events TO /evenemang
   { href: '/culture', label: 'Kultur' },
   { href: '/contact', label: 'Kontakt' },
 ];
