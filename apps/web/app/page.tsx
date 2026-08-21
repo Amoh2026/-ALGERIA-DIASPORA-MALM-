@@ -132,7 +132,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== SAF INTRODUCTION ===== */}
+      {/* ===== SAF INTRODUCTION - TEXT OVERLAY ON IMAGE ===== */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
@@ -143,35 +143,33 @@ export default function Home() {
               <p className="text-xl text-gray-600">En aktiv mötesplats för algerier i Malmö</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 shadow-lg border border-blue-100">
-                <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                  <strong>Svensk-Algeriska Föreningen i Malmö (SAF)</strong> är en aktiv förening 
-                  som samlar algerier och personer med anknytning till Algeriet som bor i Malmö och närområdet.
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  Föreningen arbetar för att skapa gemenskap, främja det kulturella utbytet och 
-                  ge medlemmarna möjlighet att mötas, samarbeta och delta i olika aktiviteter i Malmö.
-                </p>
-                <p className="text-gray-700 leading-relaxed mt-4">
-                  Föreningen är en del av det lokala föreningslivet och deltar i olika aktiviteter 
-                  tillsammans med andra föreningar och organisationer i Malmö, bland annat 
-                  <strong> ABF </strong> och andra lokala samarbetspartners.
-                </p>
-              </div>
-              <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-                <Image
-                  src="/images/Oresundsbron.png"
-                  alt="Öresundsbron - Connecting Sweden and Denmark"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent flex items-end p-6">
-                  <div className="text-white">
-                    <div className="text-4xl mb-2">🇩🇿</div>
-                    <h3 className="text-2xl font-bold">Välkommen till SAF</h3>
-                    <p className="text-white/90">En gemenskap där algerisk kultur och svensk vardag möts.</p>
-                  </div>
+            {/* Image as background with text overlay */}
+            <div className="relative rounded-2xl overflow-hidden shadow-lg min-h-[500px] md:min-h-[550px]">
+              <Image
+                src="/images/Oresundsbron.png"
+                alt="Öresundsbron - Connecting Sweden and Denmark"
+                fill
+                className="object-cover"
+              />
+              {/* Lighter overlay for text readability */}
+              <div className="absolute inset-0 bg-black/30"></div>
+              
+              {/* Text content overlaid on image */}
+              <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col justify-center min-h-[500px] md:min-h-[550px]">
+                <div className="max-w-3xl">
+                  <p className="text-lg md:text-xl text-white leading-relaxed mb-4">
+                    <strong className="text-white">Svensk-Algeriska Föreningen i Malmö (SAF)</strong> är en aktiv förening 
+                    som samlar algerier och personer med anknytning till Algeriet som bor i Malmö och närområdet.
+                  </p>
+                  <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+                    Föreningen arbetar för att skapa gemenskap, främja det kulturella utbytet och 
+                    ge medlemmarna möjlighet att mötas, samarbeta och delta i olika aktiviteter i Malmö.
+                  </p>
+                  <p className="text-lg md:text-xl text-white/90 leading-relaxed mt-4">
+                    Föreningen är en del av det lokala föreningslivet och deltar i olika aktiviteter 
+                    tillsammans med andra föreningar och organisationer i Malmö, bland annat 
+                    <strong className="text-white"> ABF</strong> och andra lokala samarbetspartners.
+                  </p>
                 </div>
               </div>
             </div>
@@ -223,16 +221,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== CALL TO ACTION ===== */}
-      <section className="py-16 bg-gradient-to-r from-blue-50 to-yellow-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center bg-white rounded-2xl p-12 shadow-xl">
-            <div className="text-6xl mb-4">🌟</div>
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Bli en del av SAF</h2>
-            <p className="text-xl text-gray-700 mb-8">Svensk-Algeriska Föreningen i Malmö – gemenskap, kultur och samarbete.</p>
+      {/* ===== CALL TO ACTION - LARGER BACKGROUND IMAGE ===== */}
+      <section className="relative overflow-hidden min-h-[700px] md:min-h-[800px] lg:min-h-[900px] flex items-center">
+        {/* Background Image - larger and shows full image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/enDelMed.png"
+            alt="Bli en del av SAF"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+        
+        {/* Content directly on the image */}
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-7xl md:text-8xl mb-6">🌟</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Bli en del av SAF</h2>
+            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto">Svensk-Algeriska Föreningen i Malmö – gemenskap, kultur och samarbete.</p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/medlemsregistrering" className="bg-blue-900 text-white font-bold px-8 py-4 rounded-lg hover:bg-blue-800 transition transform hover:scale-105 shadow-lg">Bli Medlem idag</Link>
-              <Link href="/contact" className="border-2 border-blue-900 text-blue-900 px-8 py-4 rounded-lg hover:bg-blue-50 transition transform hover:scale-105">Kontakta oss</Link>
+              <Link 
+                href="/medlemsregistrering" 
+                className="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-10 py-5 rounded-lg text-xl transition transform hover:scale-105 shadow-lg"
+              >
+                Bli Medlem idag
+              </Link>
+              <Link 
+                href="/contact" 
+                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border-2 border-white px-10 py-5 rounded-lg text-xl transition transform hover:scale-105"
+              >
+                Kontakta oss
+              </Link>
             </div>
           </div>
         </div>
