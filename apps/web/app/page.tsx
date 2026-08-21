@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       
-      {/* ===== HERO SECTION (ONLY IMAGE + BUTTONS + SOFT FADE) ===== */}
-      <section className="relative min-h-[650px] flex items-center justify-center text-white overflow-hidden">
+      {/* ===== HERO SECTION WITH TEXT AT TOP AND GOLD WAVE AT BOTTOM ===== */}
+      <section className="relative min-h-[650px] md:min-h-[750px] lg:min-h-[850px] flex items-start justify-center text-white overflow-hidden pt-8 md:pt-12 lg:pt-16">
         
         {/* Background Image - homepage.png */}
         <div className="absolute inset-0 z-0">
@@ -15,56 +15,42 @@ export default function Home() {
             src="/images/homepage.png"
             alt="Välkomna till Svensk Algeriska Föreningen i Malmö"
             fill
-            className="object-cover"
+            className="object-contain object-center"
             priority
           />
-          {/* Light overlay to make buttons readable */}
-          <div className="absolute inset-0 bg-black/10"></div>
-        </div>
-        
-        {/* Buttons centered over the image */}
-        <div className="container mx-auto px-4 relative z-10 text-center flex flex-col items-center mt-20 md:mt-32">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link 
-              href="/medlemsregistrering" 
-              className="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-8 py-3 rounded-lg text-lg transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              Bli Medlem
-            </Link>
-            <Link 
-              href="/about" 
-              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border-2 border-white font-bold px-8 py-3 rounded-lg text-lg transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              Läs Mer
-            </Link>
-          </div>
+          {/* Medium overlay for text readability */}
+          <div className="absolute inset-0 bg-black/25"></div>
         </div>
 
-        {/* Decorative wave at bottom - kept white */}
-        <div className="absolute bottom-0 left-0 right-0 z-10">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 40L60 50C120 60 240 80 360 80C480 80 600 60 720 50C840 40 960 40 1080 50C1200 60 1320 80 1380 80L1440 80V120H0V40Z" fill="white"/>
-          </svg>
-        </div>
-
-        {/* ===== SOFT FADE GRADIENT TO BLEND WITH WHITE PAGE ===== */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-      </section>
-
-      {/* ===== MALMÖ INTRO ===== */}
-      <section className="py-16 bg-white relative">
-        <div className="container mx-auto px-4 relative z-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6">
+        {/* Text content at the top of the image */}
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-3 drop-shadow-lg">
+              Välkomna till Svensk Algeriska Föreningen i Malmö
+            </h1>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
               🌉 Malmö — En stad av broar och kulturer
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto drop-shadow-md">
               Malmö är en av Sveriges mest vibrerande och mångsidiga städer, belägen i södra Skåne. 
               Med sin rika historia, moderna arkitektur och vackra kustlinje har Malmö blivit ett hem 
               för människor från hela världen — inklusive en blomstrande algerisk gemenskap.
             </p>
           </div>
         </div>
+
+        {/* ===== LARGER GOLD WAVE AT BOTTOM ===== */}
+        <div className="absolute bottom-0 left-0 right-0 z-10">
+          <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path 
+              d="M0 60L60 75C120 90 240 120 360 120C480 120 600 90 720 75C840 60 960 60 1080 75C1200 90 1320 120 1380 120L1440 120V180H0V60Z" 
+              fill="#C9A84C"
+            />
+          </svg>
+        </div>
+
+        {/* ===== SOFT FADE GRADIENT TO BLEND WITH WHITE PAGE ===== */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
       </section>
 
       {/* ===== MALMÖ HIGHLIGHTS ===== */}
@@ -245,13 +231,13 @@ export default function Home() {
             <div className="flex flex-wrap gap-4 justify-center">
               <Link 
                 href="/medlemsregistrering" 
-                className="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-10 py-5 rounded-lg text-xl transition transform hover:scale-105 shadow-lg"
+                className="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-10 py-5 rounded-lg text-xl transition transform hover:scale-105 shadow-lg inline-block"
               >
                 Bli Medlem idag
               </Link>
               <Link 
                 href="/contact" 
-                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border-2 border-white px-10 py-5 rounded-lg text-xl transition transform hover:scale-105"
+                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border-2 border-white px-10 py-5 rounded-lg text-xl transition transform hover:scale-105 inline-block"
               >
                 Kontakta oss
               </Link>
