@@ -1,63 +1,67 @@
-﻿import Link from 'next/link';
+﻿'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Building2, Landmark, Umbrella, Flag, Globe, Heart, Handshake } from 'lucide-react';
+import { t, getCurrentLanguage } from '@/lib/translations';
 
 export default function Home() {
+  const [lang, setLang] = useState('sv');
+
+  useEffect(() => {
+    setLang(getCurrentLanguage());
+  }, []);
+
+  const tr = (key: string) => t(lang, key, 'home');
+
   return (
     <div className="min-h-screen">
-      
-      {/* ===== HERO SECTION WITH TEXT AT TOP AND GOLD WAVE AT BOTTOM ===== */}
-      <section className="relative min-h-[650px] md:min-h-[750px] lg:min-h-[850px] flex items-start justify-center text-white overflow-hidden pt-8 md:pt-12 lg:pt-16">
-        
-        {/* Background Image - homepage.png */}
+      {/* Hero Section */}
+      <section className="relative min-h-162.5 md:min-h-187.5 lg:min-h-212.5 flex items-start justify-center text-white overflow-hidden pt-8 md:pt-12 lg:pt-16">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/homepage.png"
-            alt="Välkomna till Svensk Algeriska Föreningen i Malmö"
+            alt={tr('heroTitle')}
             fill
             className="object-contain object-center"
             priority
           />
-          {/* Medium overlay for text readability */}
           <div className="absolute inset-0 bg-black/25"></div>
         </div>
 
-        {/* Text content at the top of the image */}
         <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-3 drop-shadow-lg">
-              Välkomna till Svensk Algeriska Föreningen i Malmö
+              {tr('heroTitle')}
             </h1>
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
-              🌉 Malmö — En stad av broar och kulturer
+              {tr('heroSubtitle')}
             </h2>
             <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto drop-shadow-md">
-              Malmö är en av Sveriges mest vibrerande och mångsidiga städer, belägen i södra Skåne. 
-              Med sin rika historia, moderna arkitektur och vackra kustlinje har Malmö blivit ett hem 
-              för människor från hela världen — inklusive en blomstrande algerisk gemenskap.
+              {tr('heroDescription')}
             </p>
           </div>
         </div>
 
-        {/* ===== LARGER GOLD WAVE AT BOTTOM ===== */}
+        {/* Gold Wave */}
         <div className="absolute bottom-0 left-0 right-0 z-10">
-          <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
             <path 
-              d="M0 60L60 75C120 90 240 120 360 120C480 120 600 90 720 75C840 60 960 60 1080 75C1200 90 1320 120 1380 120L1440 120V180H0V60Z" 
+              d="M0 60L60 70C120 80 240 100 360 100C480 100 600 80 720 70C840 60 960 60 1080 70C1200 80 1320 100 1380 100L1440 100V120H0V60Z" 
               fill="#C9A84C"
             />
           </svg>
         </div>
 
-        {/* ===== SOFT FADE GRADIENT TO BLEND WITH WHITE PAGE ===== */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-linear-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
       </section>
 
-      {/* ===== MALMÖ HIGHLIGHTS ===== */}
+      {/* Malmö Highlights */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
-            🏙️ Upptäck Malmö
+            {tr('discoverMalmo')}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             
@@ -73,9 +77,9 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-blue-900 mb-2 flex items-center gap-2">
-                  <Building2 className="h-5 w-5" /> Turning Torso
+                  <Building2 className="h-5 w-5" /> {tr('turningTorso')}
                 </h3>
-                <p className="text-gray-600">Malmös mest ikoniska landmärke i Västra Hamnen.</p>
+                <p className="text-gray-600">{tr('turningTorsoDesc')}</p>
               </div>
             </div>
 
@@ -91,9 +95,9 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-blue-900 mb-2 flex items-center gap-2">
-                  <Landmark className="h-5 w-5" /> Stortorget
+                  <Landmark className="h-5 w-5" /> {tr('stortorget')}
                 </h3>
-                <p className="text-gray-600">Malmös äldsta och vackraste torg.</p>
+                <p className="text-gray-600">{tr('stortorgetDesc')}</p>
               </div>
             </div>
 
@@ -109,52 +113,46 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-blue-900 mb-2 flex items-center gap-2">
-                  <Umbrella className="h-5 w-5" /> Ribersborg Beach
+                  <Umbrella className="h-5 w-5" /> {tr('ribersborg')}
                 </h3>
-                <p className="text-gray-600">"Ribban" - populär strand längs Öresund.</p>
+                <p className="text-gray-600">{tr('ribersborgDesc')}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== SAF INTRODUCTION - TEXT OVERLAY ON IMAGE ===== */}
+      {/* SAF Introduction */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
-                🇩🇿 Svensk Algeriska Föreningen i Malmö
+                {tr('associationTitle')}
               </h2>
-              <p className="text-xl text-gray-600">En aktiv mötesplats för algerier i Malmö</p>
+              <p className="text-xl text-gray-600">{tr('associationSubtitle')}</p>
             </div>
 
-            {/* Image as background with text overlay */}
-            <div className="relative rounded-2xl overflow-hidden shadow-lg min-h-[500px] md:min-h-[550px]">
+            <div className="relative rounded-2xl overflow-hidden shadow-lg min-h-125 md:min-h-137.5">
               <Image
                 src="/images/Oresundsbron.png"
-                alt="Öresundsbron - Connecting Sweden and Denmark"
+                alt="Öresundsbron"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               />
-              {/* Lighter overlay for text readability */}
               <div className="absolute inset-0 bg-black/30"></div>
               
-              {/* Text content overlaid on image */}
-              <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col justify-center min-h-[500px] md:min-h-[550px]">
+              <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col justify-center min-h-125 md:min-h-137.5">
                 <div className="max-w-3xl">
                   <p className="text-lg md:text-xl text-white leading-relaxed mb-4">
-                    <strong className="text-white">Svensk-Algeriska Föreningen i Malmö (SAF)</strong> är en aktiv förening 
-                    som samlar algerier och personer med anknytning till Algeriet som bor i Malmö och närområdet.
+                    <strong className="text-white">{tr('associationIntro')}</strong>
                   </p>
                   <p className="text-lg md:text-xl text-white/90 leading-relaxed">
-                    Föreningen arbetar för att skapa gemenskap, främja det kulturella utbytet och 
-                    ge medlemmarna möjlighet att mötas, samarbeta och delta i olika aktiviteter i Malmö.
+                    {tr('associationWork')}
                   </p>
                   <p className="text-lg md:text-xl text-white/90 leading-relaxed mt-4">
-                    Föreningen är en del av det lokala föreningslivet och deltar i olika aktiviteter 
-                    tillsammans med andra föreningar och organisationer i Malmö, bland annat 
-                    <strong className="text-white"> ABF</strong> och andra lokala samarbetspartners.
+                    {tr('associationPartners')}
                   </p>
                 </div>
               </div>
@@ -163,94 +161,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== KEY FEATURES ===== */}
+      {/* Key Features */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">💫 Vår Verksamhet</h2>
+          <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
+            {tr('ourActivities')}
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             
             <a href="https://www.embalgeria.se/" target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center transform hover:-translate-y-1 block">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Flag className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-lg font-bold text-blue-900 mb-2">Kontakt med Ambassaden</h3>
+              <h3 className="text-lg font-bold text-blue-900 mb-2">{tr('embassy')}</h3>
               <p className="text-gray-600 text-sm">
-                Nära samarbete med <strong>Algeriets ambassad i Stockholm</strong>.
+                {tr('embassyDesc')}
               </p>
-              <span className="inline-block mt-3 text-xs text-blue-600 font-medium">Besök hemsidan →</span>
+              <span className="inline-block mt-3 text-xs text-blue-600 font-medium">{tr('embassyLink')}</span>
             </a>
 
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-lg font-bold text-blue-900 mb-2">Internationellt Nätverk</h3>
-              <p className="text-gray-600 text-sm">Samarbete med algeriska föreningar i Skandinavien och Europa.</p>
+              <h3 className="text-lg font-bold text-blue-900 mb-2">{tr('network')}</h3>
+              <p className="text-gray-600 text-sm">{tr('networkDesc')}</p>
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center">
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-yellow-600" />
               </div>
-              <h3 className="text-lg font-bold text-blue-900 mb-2">Ungdomsgrupp</h3>
-              <p className="text-gray-600 text-sm">Aktiv tonårsgrupp som organiserar evenemang.</p>
+              <h3 className="text-lg font-bold text-blue-900 mb-2">{tr('youth')}</h3>
+              <p className="text-gray-600 text-sm">{tr('youthDesc')}</p>
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition text-center">
               <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Handshake className="h-8 w-8 text-red-600" />
               </div>
-              <h3 className="text-lg font-bold text-blue-900 mb-2">Lokalt Samarbete</h3>
-              <p className="text-gray-600 text-sm">Aktivt deltagande i ABF och andra lokala organisationer.</p>
+              <h3 className="text-lg font-bold text-blue-900 mb-2">{tr('local')}</h3>
+              <p className="text-gray-600 text-sm">{tr('localDesc')}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== CALL TO ACTION - LARGER BACKGROUND IMAGE ===== */}
-      <section className="relative overflow-hidden min-h-[700px] md:min-h-[800px] lg:min-h-[900px] flex items-center">
-        {/* Background Image - larger and shows full image */}
+      {/* Call to Action */}
+      <section className="relative overflow-hidden min-h-175 md:min-h-200 lg:min-h-225 flex items-center">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/enDelMed.png"
-            alt="Bli en del av SAF"
+            alt={tr('callToAction')}
             fill
             className="object-cover object-center"
             priority
           />
-          {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
         
-        {/* Content directly on the image */}
         <div className="container mx-auto px-4 relative z-10 text-center">
           <div className="max-w-4xl mx-auto">
             <div className="text-7xl md:text-8xl mb-6">🌟</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Bli en del av SAF</h2>
-            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto">Svensk-Algeriska Föreningen i Malmö – gemenskap, kultur och samarbete.</p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              {tr('callToAction')}
+            </h2>
+            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto">
+              {tr('callToActionDesc')}
+            </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link 
                 href="/medlemsregistrering" 
                 className="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold px-10 py-5 rounded-lg text-xl transition transform hover:scale-105 shadow-lg inline-block"
               >
-                Bli Medlem idag
+                {tr('joinNow')}
               </Link>
               <Link 
                 href="/contact" 
                 className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border-2 border-white px-10 py-5 rounded-lg text-xl transition transform hover:scale-105 inline-block"
               >
-                Kontakta oss
+                {tr('contactUs')}
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== FOOTER ===== */}
+      {/* Footer */}
       <footer className="bg-gray-900 text-white/60 py-8 text-center text-sm border-t border-gray-800">
         <div className="container mx-auto px-4">
-          <p className="text-white/80 font-medium">🇩🇿 Svensk-Algeriska Föreningen i Malmö – gemenskap, kultur och samarbete.</p>
-          <p className="mt-2">© {new Date().getFullYear()} Svensk Algeriska Föreningen. Alla rättigheter förbehållna.</p>
+          <p className="text-white/80 font-medium">
+            🇩🇿 {tr('footerTagline')}
+          </p>
+          <p className="mt-2">
+            © {new Date().getFullYear()} {tr('footerCopyright')}
+          </p>
         </div>
       </footer>
     </div>

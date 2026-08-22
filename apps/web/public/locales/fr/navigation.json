@@ -1,0 +1,16 @@
+{
+  "home": "Accueil",
+  "about": "À Propos",
+  "events": "Événements",
+  "culture": "Culture",
+  "contact": "Contact",
+  "login": "Connexion",
+  "register": "S'inscrire",
+  "dashboard": "Tableau de bord",
+  "membership": "Adhésion",
+  "admin": "Admin",
+  "logout": "Déconnexion",
+  "language": "Langue",
+  "loggedInAs": "Connecté en tant que:",
+  "adminDashboard": "Tableau de bord Admin"
+}

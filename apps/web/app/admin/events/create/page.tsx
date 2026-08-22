@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -6,8 +6,9 @@ import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslation } from '@/hooks/useTranslation';
 
-export default function CreateEventPage() {
+export default function CreateEventPage() {`n  const { t } = useTranslation();
   const router = useRouter();
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ export default function CreateEventPage() {
   });
 
   if (!session || session.user?.role !== 'ADMIN') {
-    return <div className="text-center py-12">Du har inte behörighet att skapa evenemang</div>;
+    return <div className="text-center py-12">Du har inte behÃ¶righet att skapa evenemang</div>;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,7 +41,7 @@ export default function CreateEventPage() {
       if (response.ok) {
         router.push('/admin/events');
       } else {
-        alert('Något gick fel. Försök igen.');
+        alert('NÃ¥got gick fel. FÃ¶rsÃ¶k igen.');
       }
     } catch (error) {
       console.error('Error creating event:', error);
@@ -93,7 +94,7 @@ export default function CreateEventPage() {
                 required
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                placeholder="Malmö, Sverige"
+                placeholder="MalmÃ¶, Sverige"
               />
             </div>
 

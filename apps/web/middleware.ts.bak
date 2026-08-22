@@ -1,0 +1,60 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  
+  // Skip API and static files
+  if (pathname.startsWith('/api')) {
+    return NextResponse.next();
+  }
+  
+  // Skip Next.js internal paths and files with extensions
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.includes('.') // Skip files with extensions
+  ) {
+    return NextResponse.next();
+  }
+
+  // Get language from cookie or header
+  const cookieLang = request.cookies.get('i18nextLng')?.value;
+  const acceptLang = request.headers.get('accept-language')?.split(',')[0]?.substring(0, 2);
+  
+  const supported = ['sv', 'en', 'fr', 'ar'];
+  const defaultLang = 'sv';
+  
+  // Determine language
+  let lang = cookieLang || acceptLang || defaultLang;
+  if (!supported.includes(lang)) lang = defaultLang;
+
+  // Set language header
+  const headers = new Headers(request.headers);
+  headers.set('x-language', lang);
+
+  const response = NextResponse.next({ 
+    request: { 
+      headers: headers 
+    } 
+  });
+
+  // Set cookie if missing
+  if (!cookieLang) {
+    response.cookies.set('i18nextLng', lang, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+      httpOnly: true,
+      sameSite: 'lax',
+    });
+  }
+
+  return response;
+}
+
+// ✅ SUPER SIMPLE matcher - only match pages
+export const config = {
+  matcher: [
+    // Match all paths except API and static files
+    '/((?!api|_next/static|_next/image|favicon.ico|images).*)',
+  ],
+};

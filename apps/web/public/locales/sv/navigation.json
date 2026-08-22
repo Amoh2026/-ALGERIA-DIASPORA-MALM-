@@ -1,0 +1,16 @@
+{
+  "home": "Hem",
+  "about": "Om Oss",
+  "events": "Evenemang",
+  "culture": "Kultur",
+  "contact": "Kontakt",
+  "login": "Logga in",
+  "register": "Registrera",
+  "dashboard": "Dashboard",
+  "membership": "Bli Medlem",
+  "admin": "Admin",
+  "logout": "Logga ut",
+  "language": "Språk",
+  "loggedInAs": "Inloggad som:",
+  "adminDashboard": "Admin Dashboard"
+}

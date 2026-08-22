@@ -1,4 +1,5 @@
-import React from 'react';
+﻿'use client';
+
 import Image from 'next/image';
 
 export default function EvenemangPage() {
@@ -28,7 +29,7 @@ export default function EvenemangPage() {
             Kommande Aktiviteter
           </h2>
           <p className="text-xl md:text-2xl leading-relaxed mb-6 text-white/95 font-medium">
-            Här hittar du alla våra kommande evenemang, fester och kulturella sammankomster. 
+            Här hittar du alla våra kommande evenemang, fester och kulturella sammankomster.
             Vi återkommer snart med uppdaterade datum!
           </p>
           

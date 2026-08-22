@@ -1,6 +1,13 @@
 ﻿'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { 
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  User as FirebaseUser
+} from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 
 interface User {
   id: string;
@@ -23,55 +30,73 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/session')
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data.user);
-        setLoading(false);
-      })
-      .catch(() => {
+    // Listen for auth state changes from Firebase
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
+      console.log('Auth state changed:', firebaseUser?.email || 'No user');
+      
+      if (firebaseUser) {
+        setUser({
+          id: firebaseUser.uid,
+          email: firebaseUser.email || '',
+          name: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || '',
+          role: 'MEMBER',
+        });
+      } else {
         setUser(null);
-        setLoading(false);
-      });
+      }
+      setLoading(false);
+    });
+
+    // Cleanup subscription
+    return () => unsubscribe();
   }, []);
 
   const login = async (email: string, password: string) => {
+    console.log('🔐 Attempting login with Firebase:', email);
+    
     try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      const firebaseUser = result.user;
+      
+      console.log('✅ Login successful!', firebaseUser.email);
+      
+      setUser({
+        id: firebaseUser.uid,
+        email: firebaseUser.email || '',
+        name: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || '',
+        role: 'MEMBER',
       });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        return { success: false, error: data.error || 'Login failed' };
-      }
-
-      setUser(data.user);
+      
       return { success: true };
-    } catch (error) {
-      return { success: false, error: 'Something went wrong' };
+    } catch (error: any) {
+      console.error('❌ Login error:', error.code, error.message);
+      
+      let errorMessage = 'Invalid email or password';
+      
+      if (error.code === 'auth/user-not-found') {
+        errorMessage = 'User not found. Please register first.';
+      } else if (error.code === 'auth/wrong-password') {
+        errorMessage = 'Invalid password.';
+      } else if (error.code === 'auth/invalid-email') {
+        errorMessage = 'Invalid email address.';
+      } else if (error.code === 'auth/too-many-requests') {
+        errorMessage = 'Too many attempts. Please try again later.';
+      } else if (error.code === 'auth/network-request-failed') {
+        errorMessage = 'Network error. Please check your connection.';
+      }
+      
+      return { success: false, error: errorMessage };
     }
   };
 
   const logout = async () => {
     try {
-      // Call logout API
-      await fetch('/api/logout', { method: 'POST' });
-      
-      // Also clear cookie manually via JavaScript
-      document.cookie = 'auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      
-      // Clear user state
-      setUser(null);
+      await signOut(auth);
+      console.log('✅ Logout successful');
     } catch (error) {
-      console.error('Logout error:', error);
-      // Force clear even if API fails
-      document.cookie = 'auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      setUser(null);
+      console.error('❌ Logout error:', error);
     }
+    setUser(null);
   };
 
   return (

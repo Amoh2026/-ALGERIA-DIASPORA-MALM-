@@ -1,5 +1,7 @@
-import { Mail, Phone, MapPin } from 'lucide-react';
+﻿'use client';
+
 import Image from 'next/image';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function ContactPage() {
   return (
@@ -52,7 +54,7 @@ export default function ContactPage() {
           {/* Social Media Section - Just text */}
           <div className="mt-12 text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 drop-shadow-lg">
-              📱 Följ oss på sociala medier
+              🌟 Följ oss på sociala medier
             </h3>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -60,7 +62,7 @@ export default function ContactPage() {
                 href="https://www.facebook.com/p/Svensk-Algeriska-F%C3%B6reningen-100080588589924/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl md:text-2xl text-white/95 font-medium hover:text-white transition drop-shadow-lg"
+                className="text-xl md:text-2xl text-white/95 font-medium hover:text-white transition"
               >
                 Facebook - Svensk Algeriska Föreningen
               </a>
@@ -71,14 +73,14 @@ export default function ContactPage() {
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl md:text-2xl text-white/95 font-medium hover:text-white transition drop-shadow-lg"
+                className="text-xl md:text-2xl text-white/95 font-medium hover:text-white transition"
               >
                 Instagram - @svenskalgeriska
               </a>
             </div>
             
             <p className="text-lg md:text-xl text-white/90 font-medium mt-6 drop-shadow-lg">
-              💡 Följ oss för uppdateringar om evenemang, kultur och gemenskap!
+              ✅ Följ oss för uppdateringar om evenemang, kultur och gemenskap!
             </p>
           </div>
         </div>

@@ -1,0 +1,16 @@
+{
+  "home": "الرئيسية",
+  "about": "عن الجمعية",
+  "events": "الفعاليات",
+  "culture": "الثقافة",
+  "contact": "اتصل بنا",
+  "login": "تسجيل الدخول",
+  "register": "تسجيل",
+  "dashboard": "لوحة التحكم",
+  "membership": "عضوية",
+  "admin": "المشرف",
+  "logout": "تسجيل الخروج",
+  "language": "اللغة",
+  "loggedInAs": "مسجل دخول ك:",
+  "adminDashboard": "لوحة تحكم المشرف"
+}

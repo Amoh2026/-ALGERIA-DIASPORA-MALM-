@@ -1,0 +1,16 @@
+{
+  "loading": "Laddar...",
+  "error": "Något gick fel",
+  "success": "Lyckades!",
+  "save": "Spara",
+  "cancel": "Avbryt",
+  "delete": "Ta bort",
+  "edit": "Redigera",
+  "view": "Visa",
+  "back": "Tillbaka",
+  "search": "Sök...",
+  "noResults": "Inga resultat hittades",
+  "readMore": "Läs mer",
+  "showMore": "Visa mer",
+  "showLess": "Visa mindre"
+}

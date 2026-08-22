@@ -30,10 +30,271 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
   }
+
+  /* RTL Support for Arabic */
+  [dir="rtl"] {
+    --text-align: right;
+  }
+
+  [dir="ltr"] {
+    --text-align: left;
+  }
+
+  /* Base styles for RTL */
+  html[dir="rtl"] {
+    direction: rtl;
+  }
+
+  html[dir="ltr"] {
+    direction: ltr;
+  }
+
+  /* RTL specific styles */
+  html[dir="rtl"] body {
+    text-align: right;
+  }
+
+  html[dir="ltr"] body {
+    text-align: left;
+  }
 }
 
 @layer components {
   .container {
     @apply mx-auto px-4 max-w-7xl;
+  }
+}
+
+/* --- RTL Support for Tailwind Utilities --- */
+
+/* Text Alignment */
+[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left !important;
+}
+
+[dir="rtl"] .text-center {
+  text-align: center !important;
+}
+
+/* Flex Direction */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse !important;
+}
+
+[dir="rtl"] .flex-row-reverse {
+  flex-direction: row !important;
+}
+
+/* Margins */
+[dir="rtl"] .ml-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+[dir="rtl"] .ml-1 {
+  margin-left: 0 !important;
+  margin-right: 0.25rem !important;
+}
+
+[dir="rtl"] .mr-1 {
+  margin-right: 0 !important;
+  margin-left: 0.25rem !important;
+}
+
+[dir="rtl"] .ml-2 {
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+}
+
+[dir="rtl"] .mr-2 {
+  margin-right: 0 !important;
+  margin-left: 0.5rem !important;
+}
+
+[dir="rtl"] .ml-3 {
+  margin-left: 0 !important;
+  margin-right: 0.75rem !important;
+}
+
+[dir="rtl"] .mr-3 {
+  margin-right: 0 !important;
+  margin-left: 0.75rem !important;
+}
+
+[dir="rtl"] .ml-4 {
+  margin-left: 0 !important;
+  margin-right: 1rem !important;
+}
+
+[dir="rtl"] .mr-4 {
+  margin-right: 0 !important;
+  margin-left: 1rem !important;
+}
+
+/* Padding */
+[dir="rtl"] .pl-1 {
+  padding-left: 0 !important;
+  padding-right: 0.25rem !important;
+}
+
+[dir="rtl"] .pr-1 {
+  padding-right: 0 !important;
+  padding-left: 0.25rem !important;
+}
+
+[dir="rtl"] .pl-2 {
+  padding-left: 0 !important;
+  padding-right: 0.5rem !important;
+}
+
+[dir="rtl"] .pr-2 {
+  padding-right: 0 !important;
+  padding-left: 0.5rem !important;
+}
+
+[dir="rtl"] .pl-3 {
+  padding-left: 0 !important;
+  padding-right: 0.75rem !important;
+}
+
+[dir="rtl"] .pr-3 {
+  padding-right: 0 !important;
+  padding-left: 0.75rem !important;
+}
+
+[dir="rtl"] .pl-4 {
+  padding-left: 0 !important;
+  padding-right: 1rem !important;
+}
+
+[dir="rtl"] .pr-4 {
+  padding-right: 0 !important;
+  padding-left: 1rem !important;
+}
+
+/* Space Between (Flex/Grid gaps) */
+[dir="rtl"] .space-x-1 > * + * {
+  margin-right: 0.25rem !important;
+  margin-left: 0 !important;
+}
+
+[dir="rtl"] .space-x-2 > * + * {
+  margin-right: 0.5rem !important;
+  margin-left: 0 !important;
+}
+
+[dir="rtl"] .space-x-3 > * + * {
+  margin-right: 0.75rem !important;
+  margin-left: 0 !important;
+}
+
+[dir="rtl"] .space-x-4 > * + * {
+  margin-right: 1rem !important;
+  margin-left: 0 !important;
+}
+
+/* Borders */
+[dir="rtl"] .border-l {
+  border-left: none !important;
+  border-right: 1px solid !important;
+}
+
+[dir="rtl"] .border-r {
+  border-right: none !important;
+  border-left: 1px solid !important;
+}
+
+[dir="rtl"] .rounded-l {
+  border-radius: 0 !important;
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important;
+}
+
+[dir="rtl"] .rounded-r {
+  border-radius: 0 !important;
+  border-top-left-radius: 0.25rem !important;
+  border-bottom-left-radius: 0.25rem !important;
+}
+
+/* Input/Form Elements */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right !important;
+}
+
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="tel"] {
+  direction: ltr !important;
+}
+
+[dir="rtl"] input[type="number"] {
+  direction: ltr !important;
+}
+
+/* Dropdowns and Popups */
+[dir="rtl"] .dropdown-menu {
+  right: auto !important;
+  left: 0 !important;
+}
+
+/* Icons */
+[dir="rtl"] .rotate-180 {
+  transform: rotate(180deg) !important;
+}
+
+/* Scrollbar for RTL */
+[dir="rtl"] ::-webkit-scrollbar-track {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Accessibility: Focus styles */
+*:focus-visible {
+  outline: 2px solid #1a56db;
+  outline-offset: 2px;
+}
+
+/* Dark mode support for RTL */
+@media (prefers-color-scheme: dark) {
+  [dir="rtl"] {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
   }
 }

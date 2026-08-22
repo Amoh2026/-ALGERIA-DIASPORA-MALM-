@@ -1,4 +1,4 @@
-"use client";
+﻿'use client';
 
 import React from 'react';
 import Image from 'next/image';
@@ -55,7 +55,7 @@ export default function KulturPage() {
     <div className="min-h-screen">
       
       {/* ===== HERO SECTION WITH ALGERCOMBINE IMAGE AND GOLD WAVE ===== */}
-      <section className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-start justify-center text-white overflow-hidden pt-8 md:pt-12 lg:pt-16">
+      <section className="relative min-h-125 md:min-h-150 lg:min-h-175 flex items-start justify-center text-white overflow-hidden pt-8 md:pt-12 lg:pt-16">
         
         {/* Background Image - AlgerCombine.png */}
         <div className="absolute inset-0 z-0">
@@ -98,7 +98,7 @@ export default function KulturPage() {
         </div>
 
         {/* ===== SOFT FADE GRADIENT TO BLEND WITH WHITE PAGE ===== */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
       </section>
 
       {/* --- GALLERY SECTION --- */}
@@ -124,18 +124,18 @@ export default function KulturPage() {
                     alt={item.alt}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 {/* Text Container */}
-                <div className="p-6 flex flex-col flex-grow">
+                <div className="p-6 flex flex-col grow">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="text-xl font-bold text-blue-900 leading-tight">
                       {item.title}
                     </h3>
                     <div className="w-2 h-2 rounded-full bg-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+                  <p className="text-gray-600 text-sm leading-relaxed grow">
                     {item.description}
                   </p>
                   <div className="mt-4 pt-4 border-t border-gray-100 flex justify-end">
@@ -150,7 +150,7 @@ export default function KulturPage() {
         </div>
 
         {/* --- CONTACT FORM SECTION - READABLE TEXT --- */}
-        <div className="relative rounded-3xl overflow-hidden mb-16 min-h-[600px]">
+        <div className="relative rounded-3xl overflow-hidden mb-16 min-h-150">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -163,7 +163,7 @@ export default function KulturPage() {
             {/* Darker overlay for better text readability */}
             <div className="absolute inset-0 bg-black/50"></div>
             {/* Subtle gold glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-800/30 via-yellow-700/20 to-amber-600/30"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-amber-800/30 via-yellow-700/20 to-amber-600/30"></div>
           </div>
 
           {/* Form Content */}
@@ -172,9 +172,9 @@ export default function KulturPage() {
               {/* Gold decorative divider */}
               <div className="flex justify-center mb-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-amber-300"></div>
+                  <div className="w-16 h-0.5 bg-linear-to-r from-transparent to-amber-300"></div>
                   <span className="text-4xl drop-shadow-lg">✨</span>
-                  <div className="w-16 h-0.5 bg-gradient-to-l from-transparent to-amber-300"></div>
+                  <div className="w-16 h-0.5 bg-linear-to-l from-transparent to-amber-300"></div>
                 </div>
               </div>
 
@@ -182,7 +182,7 @@ export default function KulturPage() {
                 <h3 className="text-4xl md:text-5xl font-bold text-white mb-3 drop-shadow-lg" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}>
                   Kontakta Oss
                 </h3>
-                <div className="w-24 h-1 bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-200 mx-auto rounded-full mb-4"></div>
+                <div className="w-24 h-1 bg-linear-to-r from-amber-200 via-yellow-400 to-amber-200 mx-auto rounded-full mb-4"></div>
                 <p className="text-white text-lg md:text-xl max-w-2xl mx-auto font-medium" style={{ textShadow: '0 2px 15px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.5)' }}>
                   Har du frågor eller vill du veta mer om vår verksamhet? 
                   Tveka inte att höra av dig till oss!
@@ -261,12 +261,12 @@ export default function KulturPage() {
                     <span>Skicka Meddelande</span>
                     <span className="text-xl">✨</span>
                   </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
                 </button>
 
                 {/* Gold decorative line */}
                 <div className="mt-6 flex justify-center">
-                  <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-transparent"></div>
+                  <div className="w-32 h-px bg-linear-to-r from-transparent via-amber-300/50 to-transparent"></div>
                 </div>
               </form>
 

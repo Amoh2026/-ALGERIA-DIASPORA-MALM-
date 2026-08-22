@@ -1,3 +1,5 @@
+﻿'use client';
+
 import Image from 'next/image';
 
 export default function AboutPage() {
@@ -27,8 +29,8 @@ export default function AboutPage() {
             Vår Historia
           </h2>
           <p className="text-xl md:text-2xl leading-relaxed mb-3 text-white/95 font-medium">
-            Svensk Algeriska Föreningen grundades med syftet att förena svenska och algeriska kulturer i Sverige.
-            Föreningen har sedan dess varit en viktig mötesplats för den algeriska gemenskapen i Malmö och Skåne.
+            Svensk Algeriska Föreningen grundades med syftet att förena svenska och algeriska kulturer i Malmö. 
+            Föreningen har sedan dess varit en viktig mötesplats för den algeriska gemenskapen i Sverige.
           </p>
           
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-2 drop-shadow-lg">
@@ -37,7 +39,7 @@ export default function AboutPage() {
           <p className="text-xl md:text-2xl text-white/95 font-medium mb-2">
             Vi arbetar för att:
           </p>
-          <ul className="list-disc list-inside text-xl md:text-2xl text-white/95 font-medium space-y-1 ml-4">
+          <ul className="list-disc list-inside text-xl md:text-2xl text-white/95 font-medium space-y-1">
             <li>Skapa gemenskap bland algerier i Malmö</li>
             <li>Främja kulturellt utbyte mellan Sverige och Algeriet</li>
             <li>Bevara och dela algeriska traditioner och kultur</li>
@@ -52,17 +54,17 @@ export default function AboutPage() {
             <div className="p-4 rounded-lg text-center">
               <div className="text-5xl mb-2">🤝</div>
               <h3 className="font-bold text-2xl text-white drop-shadow-lg">Gemenskap</h3>
-              <p className="text-lg text-white/90 font-medium">Vi bygger starka relationer</p>
+              <p className="text-lg text-white/90 font-medium">Vi bygger starka relationer och en inkluderande miljö för alla medlemmar.</p>
             </div>
             <div className="p-4 rounded-lg text-center">
               <div className="text-5xl mb-2">🌍</div>
               <h3 className="font-bold text-2xl text-white drop-shadow-lg">Kultur</h3>
-              <p className="text-lg text-white/90 font-medium">Vi bevarar och delar vårt arv</p>
+              <p className="text-lg text-white/90 font-medium">Vi bevarar och delar vårt rika kulturarv med glädje och stolthet.</p>
             </div>
             <div className="p-4 rounded-lg text-center">
               <div className="text-5xl mb-2">💪</div>
               <h3 className="font-bold text-2xl text-white drop-shadow-lg">Engagemang</h3>
-              <p className="text-lg text-white/90 font-medium">Vi arbetar för alla medlemmar</p>
+              <p className="text-lg text-white/90 font-medium">Vi arbetar för alla medlemmar och strävar efter att göra skillnad.</p>
             </div>
           </div>
         </div>

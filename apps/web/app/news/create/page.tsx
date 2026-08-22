@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -6,10 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const categories = ['ANNOUNCEMENT', 'EVENT', 'GENERAL', 'CULTURE'];
 
-export default function CreatePostPage() {
+export default function CreatePostPage() {`n  const { t } = useTranslation();
   const router = useRouter();
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);

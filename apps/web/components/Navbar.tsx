@@ -6,27 +6,28 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-
-const navItems = [
-  { href: '/', label: 'Hem' },
-  { href: '/about', label: 'Om Oss' },
-  { href: '/evenemang', label: 'Evenemang' },
-  { href: '/culture', label: 'Kultur' },
-  { href: '/contact', label: 'Kontakt' },
-];
+import { t, getCurrentLanguage } from '@/lib/translations';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const { user, loading, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [lang, setLang] = useState('sv');
+
+  useEffect(() => {
+    setLang(getCurrentLanguage());
+  }, []);
+
+  // Translation helper
+  const tr = (key: string) => t(lang, key, 'navigation');
 
   const isAuthenticated = !loading && user !== null;
 
   const handleLogout = async () => {
     try {
       await logout();
-      // Force reload to clear all state
       window.location.href = '/';
     } catch (error) {
       console.error('Logout error:', error);
@@ -34,14 +35,14 @@ export function Navbar() {
     }
   };
 
-  const getUserArea = () => {
-    if (!isAuthenticated) return 'Public';
-    if (pathname?.startsWith('/admin')) return 'Admin';
-    if (pathname?.startsWith('/member')) return 'Member';
-    return 'Public';
-  };
-
-  const userArea = getUserArea();
+  // Navigation items with translated labels
+  const navItems = [
+    { href: '/', label: tr('home') },
+    { href: '/about', label: tr('about') },
+    { href: '/evenemang', label: tr('events') },
+    { href: '/culture', label: tr('culture') },
+    { href: '/contact', label: tr('contact') },
+  ];
 
   return (
     <nav className="bg-blue-900 border-b-4 border-yellow-500 shadow-lg sticky top-0 z-50">
@@ -52,7 +53,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition">
             <img
               src="/images/svensk-algeriska-foreningen-logo.png"
-              alt="Svensk Algeriska Föreningen"
+              alt={tr('home')}
               style={{ height: '40px', width: 'auto' }}
             />
             <div className="hidden sm:block">
@@ -79,19 +80,22 @@ export function Navbar() {
               </Link>
             ))}
 
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
             {!isAuthenticated ? (
               <div className="flex items-center gap-3">
                 <Link
                   href="/login"
                   className="text-white hover:text-yellow-400 transition font-medium"
                 >
-                  Logga in
+                  {tr('login')}
                 </Link>
                 <Link
                   href="/medlemsregistrering"
                   className="bg-yellow-500 text-blue-900 font-bold px-5 py-2 rounded-lg hover:bg-yellow-400 transition"
                 >
-                  Bli Medlem
+                  {tr('membership')}
                 </Link>
               </div>
             ) : (
@@ -105,7 +109,7 @@ export function Navbar() {
                         : 'bg-yellow-500/80 hover:bg-yellow-500 text-blue-900'
                     } transition`}
                   >
-                    Admin
+                    {tr('admin')}
                   </Link>
                 )}
                 <span className="text-white text-sm hidden lg:block">
@@ -116,7 +120,7 @@ export function Navbar() {
                   className="border-white text-white hover:bg-white hover:text-blue-800"
                   onClick={handleLogout}
                 >
-                  Logga ut
+                  {tr('logout')}
                 </Button>
               </div>
             )}
@@ -149,6 +153,14 @@ export function Navbar() {
                 </Link>
               ))}
 
+              {/* Language Switcher in Mobile Menu */}
+              <div className="pt-2 border-t border-blue-800">
+                <div className="flex items-center justify-between py-2">
+                  <span className="text-white text-sm">{tr('language')}</span>
+                  <LanguageSwitcher />
+                </div>
+              </div>
+
               {!isAuthenticated ? (
                 <div className="pt-2 border-t border-blue-800 flex flex-col gap-2">
                   <Link
@@ -156,26 +168,28 @@ export function Navbar() {
                     className="text-white hover:text-yellow-400 py-2"
                     onClick={() => setIsOpen(false)}
                   >
-                    Logga in
+                    {tr('login')}
                   </Link>
                   <Link
                     href="/medlemsregistrering"
                     className="bg-yellow-500 text-blue-900 font-bold px-5 py-2 rounded-lg hover:bg-yellow-400 transition text-center"
                     onClick={() => setIsOpen(false)}
                   >
-                    Bli Medlem
+                    {tr('membership')}
                   </Link>
                 </div>
               ) : (
                 <div className="pt-2 border-t border-blue-800">
-                  <p className="text-white text-sm py-1">Inloggad som: {user?.name}</p>
+                  <p className="text-white text-sm py-1">
+                    {tr('loggedInAs')} {user?.name}
+                  </p>
                   {user?.role === 'ADMIN' && (
                     <Link
                       href="/admin/dashboard"
                       className="block text-yellow-400 hover:text-yellow-300 py-2"
                       onClick={() => setIsOpen(false)}
                     >
-                      Admin Dashboard
+                      {tr('adminDashboard')}
                     </Link>
                   )}
                   <button
@@ -185,7 +199,7 @@ export function Navbar() {
                     }}
                     className="text-white hover:text-yellow-400 py-2 w-full text-left"
                   >
-                    Logga ut
+                    {tr('logout')}
                   </button>
                 </div>
               )}

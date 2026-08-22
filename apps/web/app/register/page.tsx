@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -6,8 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
-export default function RegisterPage() {
+export default function RegisterPage() {`n  const { t } = useTranslation();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -30,10 +31,10 @@ export default function RegisterPage() {
   });
 
   const validateForm = () => {
-    // Personal number format: ÅÅMMDD-XXXX
+    // Personal number format: Ã…Ã…MMDD-XXXX
     const pnRegex = /^\d{6}-\d{4}$/;
     if (!pnRegex.test(formData.personalNumber)) {
-      setError('Personnummer måste vara i formatet ÅÅMMDD-XXXX');
+      setError('Personnummer mÃ¥ste vara i formatet Ã…Ã…MMDD-XXXX');
       return false;
     }
 
@@ -53,7 +54,7 @@ export default function RegisterPage() {
 
     // GDPR consent required
     if (!formData.gdprConsent) {
-      setError('Du måste godkänna GDPR för att skicka in ansökan');
+      setError('Du mÃ¥ste godkÃ¤nna GDPR fÃ¶r att skicka in ansÃ¶kan');
       return false;
     }
 
@@ -81,13 +82,13 @@ export default function RegisterPage() {
 
       if (!response.ok) {
         if (response.status === 429) {
-          setError('För många försök. Vänligen vänta 15 minuter.');
+          setError('FÃ¶r mÃ¥nga fÃ¶rsÃ¶k. VÃ¤nligen vÃ¤nta 15 minuter.');
         } else if (response.status === 409) {
-          setError('Denna e-postadress har redan använts för en ansökan.');
+          setError('Denna e-postadress har redan anvÃ¤nts fÃ¶r en ansÃ¶kan.');
         } else if (data.errors) {
           setError(data.errors[0]?.message || 'Ogiltig data');
         } else {
-          setError(data.message || 'Ett fel uppstod. Vänligen försök igen.');
+          setError(data.message || 'Ett fel uppstod. VÃ¤nligen fÃ¶rsÃ¶k igen.');
         }
         return;
       }
@@ -101,7 +102,7 @@ export default function RegisterPage() {
 
     } catch (error) {
       console.error('Error submitting form:', error);
-      setError('Ett fel uppstod. Vänligen försök igen.');
+      setError('Ett fel uppstod. VÃ¤nligen fÃ¶rsÃ¶k igen.');
     } finally {
       setLoading(false);
     }
@@ -113,7 +114,7 @@ export default function RegisterPage() {
         <Card>
           <CardContent className="pt-6 text-center">
             <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2">Ansökan skickad!</h2>
+            <h2 className="text-2xl font-bold mb-2">AnsÃ¶kan skickad!</h2>
             <p className="text-muted-foreground">Omdirigerar...</p>
           </CardContent>
         </Card>
@@ -126,13 +127,13 @@ export default function RegisterPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl text-center">
-            Medlemsuppgifter 2026 – SAF Malmö
+            Medlemsuppgifter 2026 â€“ SAF MalmÃ¶
           </CardTitle>
           <p className="text-sm text-muted-foreground text-center mt-2">
-            Vi uppdaterar vårt medlemsregister och behöver din hjälp. Vänligen fyll i dina uppgifter nedan så att vi kan säkerställa att vår information är aktuell.
+            Vi uppdaterar vÃ¥rt medlemsregister och behÃ¶ver din hjÃ¤lp. VÃ¤nligen fyll i dina uppgifter nedan sÃ¥ att vi kan sÃ¤kerstÃ¤lla att vÃ¥r information Ã¤r aktuell.
           </p>
           <p className="text-xs text-muted-foreground text-center mt-2 bg-yellow-50 p-2 rounded">
-            🔒 Alla personuppgifter krypteras och hanteras säkert
+            ðŸ”’ Alla personuppgifter krypteras och hanteras sÃ¤kert
           </p>
         </CardHeader>
         <CardContent>
@@ -152,7 +153,7 @@ export default function RegisterPage() {
               <div className="grid grid-cols-2 gap-2">
                 <Input
                   required
-                  placeholder="Förnamn"
+                  placeholder="FÃ¶rnamn"
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                   disabled={loading}
@@ -174,17 +175,17 @@ export default function RegisterPage() {
               </label>
               <Input
                 required
-                placeholder="ÅÅMMDD-XXXX"
+                placeholder="Ã…Ã…MMDD-XXXX"
                 value={formData.personalNumber}
                 onChange={(e) => setFormData({ ...formData, personalNumber: e.target.value })}
                 disabled={loading}
               />
-              <p className="text-xs text-muted-foreground mt-1">Format: ÅÅMMDD-XXXX</p>
+              <p className="text-xs text-muted-foreground mt-1">Format: Ã…Ã…MMDD-XXXX</p>
             </div>
 
             {/* Gender */}
             <div>
-              <label className="block text-sm font-medium mb-1">Kön</label>
+              <label className="block text-sm font-medium mb-1">KÃ¶n</label>
               <div className="flex gap-4">
                 <label className="flex items-center gap-2">
                   <input
@@ -238,14 +239,14 @@ export default function RegisterPage() {
                 disabled={loading}
               />
               <p className="text-xs text-muted-foreground mt-1">
-                Skriv rätt mejl så du får mer info via mejl.
+                Skriv rÃ¤tt mejl sÃ¥ du fÃ¥r mer info via mejl.
               </p>
             </div>
 
             {/* Address */}
             <div>
               <label className="block text-sm font-medium mb-1">
-                Fullständig adress inkl postnr <span className="text-red-500">*</span>
+                FullstÃ¤ndig adress inkl postnr <span className="text-red-500">*</span>
               </label>
               <Input
                 required
@@ -273,11 +274,11 @@ export default function RegisterPage() {
             {/* Children */}
             <div>
               <label className="block text-sm font-medium mb-1">
-                Har du barn under 17 år?
+                Har du barn under 17 Ã¥r?
               </label>
               <textarea
                 className="w-full px-3 py-2 border rounded-md min-h-[80px]"
-                placeholder="För-, efternamn och fullständigt personnummer"
+                placeholder="FÃ¶r-, efternamn och fullstÃ¤ndigt personnummer"
                 value={formData.children}
                 onChange={(e) => setFormData({ ...formData, children: e.target.value })}
                 disabled={loading}
@@ -287,7 +288,7 @@ export default function RegisterPage() {
             {/* Age Group */}
             <div>
               <label className="block text-sm font-medium mb-1">
-                Åldersgrupp <span className="text-red-500">*</span>
+                Ã…ldersgrupp <span className="text-red-500">*</span>
               </label>
               <select
                 required
@@ -296,10 +297,10 @@ export default function RegisterPage() {
                 onChange={(e) => setFormData({ ...formData, ageGroup: e.target.value })}
                 disabled={loading}
               >
-                <option value="">Välj...</option>
-                <option value="25-64">300 kr: 25–64 år</option>
-                <option value="65+">100 kr: 65 år och uppåt</option>
-                <option value="utanfor">Utanför Malmö och Lund 100 kr</option>
+                <option value="">VÃ¤lj...</option>
+                <option value="25-64">300 kr: 25â€“64 Ã¥r</option>
+                <option value="65+">100 kr: 65 Ã¥r och uppÃ¥t</option>
+                <option value="utanfor">UtanfÃ¶r MalmÃ¶ och Lund 100 kr</option>
               </select>
             </div>
 
@@ -310,7 +311,7 @@ export default function RegisterPage() {
                 Betala med Swish till: <strong className="text-blue-600">123 222 12 99</strong>
               </p>
               <p className="text-sm text-muted-foreground">
-                Meddelande: <strong>Namn + Årsavgift 2026</strong>
+                Meddelande: <strong>Namn + Ã…rsavgift 2026</strong>
               </p>
               <Input
                 placeholder="Swish referensnummer (frivilligt)"
@@ -333,8 +334,8 @@ export default function RegisterPage() {
                   disabled={loading}
                 />
                 <span className="text-sm">
-                  <strong>Godkännande av GDPR:</strong><br />
-                  Genom att skicka in detta formulär godkänner jag att Svensk Algeriska Föreningen (SAF Malmö) behandlar mina personuppgifter i enlighet med Dataskyddsförordningen (GDPR). Informationen används endast för att administrera träffar och hantera eventuella nödvändiga kontakter. Jag har rätt att begära ändring eller radering av mina uppgifter när som helst.
+                  <strong>GodkÃ¤nnande av GDPR:</strong><br />
+                  Genom att skicka in detta formulÃ¤r godkÃ¤nner jag att Svensk Algeriska FÃ¶reningen (SAF MalmÃ¶) behandlar mina personuppgifter i enlighet med DataskyddsfÃ¶rordningen (GDPR). Informationen anvÃ¤nds endast fÃ¶r att administrera trÃ¤ffar och hantera eventuella nÃ¶dvÃ¤ndiga kontakter. Jag har rÃ¤tt att begÃ¤ra Ã¤ndring eller radering av mina uppgifter nÃ¤r som helst.
                 </span>
               </label>
             </div>
@@ -351,12 +352,12 @@ export default function RegisterPage() {
                   Skickar...
                 </>
               ) : (
-                'Skicka ansökan'
+                'Skicka ansÃ¶kan'
               )}
             </Button>
 
             <p className="text-xs text-muted-foreground text-center mt-4">
-              🔒 All data krypteras och skickas säkert
+              ðŸ”’ All data krypteras och skickas sÃ¤kert
             </p>
           </form>
         </CardContent>

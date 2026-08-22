@@ -1,0 +1,16 @@
+{
+  "home": "Home",
+  "about": "About Us",
+  "events": "Events",
+  "culture": "Culture",
+  "contact": "Contact",
+  "login": "Login",
+  "register": "Register",
+  "dashboard": "Dashboard",
+  "membership": "Membership",
+  "admin": "Admin",
+  "logout": "Logout",
+  "language": "Language",
+  "loggedInAs": "Logged in as:",
+  "adminDashboard": "Admin Dashboard"
+}

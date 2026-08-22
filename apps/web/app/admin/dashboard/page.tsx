@@ -1,7 +1,8 @@
-import { cookies } from 'next/headers';
+﻿import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { verifyToken } from '@/lib/auth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default async function AdminDashboard() {
   const cookieStore = await cookies();
@@ -20,7 +21,7 @@ export default async function AdminDashboard() {
     <div className="container mx-auto px-4 py-8">
       <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8">
         <p className="text-red-700">
-          🔐 Admin Dashboard - Inloggad som <strong>{user.name}</strong>
+          ðŸ” Admin Dashboard - Inloggad som <strong>{user.name}</strong>
         </p>
       </div>
 
@@ -42,13 +43,13 @@ export default async function AdminDashboard() {
         <Card>
           <CardContent className="pt-6">
             <p className="text-2xl font-bold">0</p>
-            <p className="text-sm text-muted-foreground">Ansökningar</p>
+            <p className="text-sm text-muted-foreground">AnsÃ¶kningar</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
             <p className="text-2xl font-bold">0</p>
-            <p className="text-sm text-muted-foreground">Inlägg</p>
+            <p className="text-sm text-muted-foreground">InlÃ¤gg</p>
           </CardContent>
         </Card>
       </div>
@@ -59,16 +60,16 @@ export default async function AdminDashboard() {
             <CardTitle>Senaste aktivitet</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">Ingen aktivitet ännu</p>
+            <p className="text-muted-foreground">Ingen aktivitet Ã¤nnu</p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Snabbåtgärder</CardTitle>
+            <CardTitle>SnabbÃ¥tgÃ¤rder</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             <a href="/admin/members/applications" className="block text-blue-600 hover:underline">
-              Visa ansökningar
+              Visa ansÃ¶kningar
             </a>
             <a href="/admin/events/create" className="block text-blue-600 hover:underline">
               Skapa evenemang
